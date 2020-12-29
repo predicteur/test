@@ -17,14 +17,26 @@ function gridStyle(feature) {
 function gridPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        'top : ' + valJson.properties.top +
-        'coordonnées : ' + feature.properties.gridcoord + '<br>' +
+        'top : ' + valJson.properties.top + '<br>' +
+        'coordonnees : ' + feature.properties.gridcoord + '<br>' +
         '<b>' + 'valeur : ' + feature.properties.value + '</b>' +
         '</div>' );
 }
+function gridLegend() {
+    let div = L.DomUtil.create("div", "legend");
+    div.innerHTML =
+        '<b>Population in 2015</b><br>by Town<br>' +
+        '<small>Persons/Town</small><br>' +
+        '<i style="background-color: #b30000"></i>2090+<br>' +
+        '<i style="background-color: #e34a33"></i>933 - 2090<br>' +
+        '<i style="background-color: #fc8d59"></i>642 - 933<br>' +
+        '<i style="background-color: #fdcc8a"></i>399 - 642<br>' +
+        '<i style="background-color: #fef0d9"></i>0 - 399<br>';
+    return div;
+}
 // affichage des cartes
 let valJson = {};
-let map = L.map("map").setView([43.5, 5], 6);
+let map = L.map("map").setView([43.5, 5], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>' }
 ).addTo(map);
@@ -36,3 +48,6 @@ fetch("json/geojson_petit.json")
         valJson = data;
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(layers);
     })
+let legend = L.control({ position: "topright" });
+legend.onAdd = gridLegend;
+legend.addTo(map);
