@@ -28,7 +28,7 @@
         ).addTo(map);
         let layers = L.layerGroup().addTo(map);
         L.marker([43.5, 5]).addTo(layers);
-        fetch("geojson_petit.json", myInit)
+        fetch("geojson_petit.json")
         .then(function(response) {
             //console.log(response);
             return response.json(); 
