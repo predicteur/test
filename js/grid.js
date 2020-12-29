@@ -17,13 +17,14 @@ function gridStyle(feature) {
 function gridPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        feature.properties.gridcoord + '<br>' +
-        '<b>' + feature.properties.value + '</b>' +
+        'top : ' + valJson.properties.top +
+        'coordonnées : ' + feature.properties.gridcoord + '<br>' +
+        '<b>' + 'valeur : ' + feature.properties.value + '</b>' +
         '</div>' );
 }
 // affichage des cartes
 let valJson = {};
-let map = L.map("map").setView([43.5, 5], 5);
+let map = L.map("map").setView([43.5, 5], 6);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>' }
 ).addTo(map);
