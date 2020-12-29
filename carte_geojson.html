@@ -24,7 +24,7 @@
             //colorbrewer2.org/?type=sequential&scheme=OrRd&n=9
             let n = 9;
             let colors = ['#fff7ec','#fee8c8','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f','#b30000','#7f0000'];
-            return colors[max(min(int((val - min)/(max - xmin)*n), n-1), 0)]; }
+            return colors[max(min(Math.floor((val - min)/(max - xmin)*n), n-1), 0)]; }
         function gridStyle(feature) {
             let min = 0.0, max = 1.0;
             return {
