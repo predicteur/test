@@ -1,10 +1,7 @@
 // JavaScript source code
 
 function gridColor(val, min, max) {
-    let n = 9;
-    //colorbrewer2.org/?type=sequential&scheme=OrRd&n=9
-    let colors = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000'];
-    return colors[Math.max(Math.min(Math.floor((val - min) / (max - min) * n), n - 1), 0)];
+    return colors[Math.max(Math.min(Math.floor((val - min) / (max - min) * ncolor), ncolor - 1), 0)];
 }
 function gridStyle(feature) {
     let min = 0.0, max = 1.0;
@@ -25,16 +22,19 @@ function gridPopup(feature, layer) {
 function gridLegend() {
     let div = L.DomUtil.create("div", "legend");
     div.innerHTML =
-        '<b>Population in 2015</b><br>by Town<br>' +
-        '<small>Persons/Town</small><br>' +
-        '<i style="background-color: #b30000"></i>2090+<br>' +
-        '<i style="background-color: #e34a33"></i>933 - 2090<br>' +
-        '<i style="background-color: #fc8d59"></i>642 - 933<br>' +
-        '<i style="background-color: #fdcc8a"></i>399 - 642<br>' +
-        '<i style="background-color: #fef0d9"></i>0 - 399<br>';
+        '<b>Concentration polluant</b><br>NO2<br>' + '<small>ppm</small><br>'
+    for (let i = ncolor - 1; i > 0; i--) {
+        let i1 = i + 1;
+        div.innerHTML +=
+            '<i style="background-color: ' + colors[i] + '"></i>' +
+            i + ' - ' + i1 + '<br>';
+    }
     return div;
 }
 // affichage des cartes
+//colorbrewer2.org/?type=sequential&scheme=OrRd&n=9
+let ncolor = 9;
+let colors = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000'];
 let valJson = {};
 let map = L.map("map").setView([43.5, 5], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
