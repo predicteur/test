@@ -43,19 +43,18 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 let max = 1.0;
 let min = 0.0;
 let layers = L.layerGroup().addTo(map);
-L.marker([43.5, 5]).addTo(layers);
+let legend = L.control({ position: "topright" });
 let valJson = {};
+
+L.marker([43.5, 5]).addTo(layers);
 fetch("json/geojson_petit.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
-        Object.assign(valJson, data);
-        console.log(valJson);
+        valJson = data;
         max = valJson.properties.valmax;
         min = valJson.properties.valmin;
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(layers);
-    })
-// légende
-console.log(valJson);
-let legend = L.control({ position: "topright" });
-legend.onAdd = gridLegend;
-legend.addTo(map);
+        legend.onAdd = gridLegend;
+        legend.addTo(map);
+    });
+
