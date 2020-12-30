@@ -48,7 +48,7 @@ let valJson = {};
 fetch("json/geojson_petit.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
-        valJson = data;
+        Object.assign(valJson, data);
         max = valJson.properties.valmax;
         min = valJson.properties.valmin;
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(layers);
