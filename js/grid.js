@@ -34,11 +34,13 @@ function gridLegend() {
 //couleur : colorbrewer2.org/?type=sequential&scheme=OrRd&n=9
 let ncolor = 9;
 let colors = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000'];
+
 // carte
 let map = L.map("map").setView([43.5, 5], 9);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     { attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>' }
 ).addTo(map);
+
 // marqueurs et grille
 let max = 1.0;
 let min = 0.0;
@@ -47,7 +49,7 @@ let legend = L.control({ position: "topright" });
 let valJson = {};
 
 L.marker([43.5, 5]).addTo(layers);
-fetch("json/geojson_petit.json")
+fetch("json/geojson_moyen.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
         valJson = data;
