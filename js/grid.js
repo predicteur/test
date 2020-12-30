@@ -15,7 +15,7 @@ function gridPopup(feature, layer) {
         '<div class="popup">' +
         'top : ' + valJson.properties.top + '<br>' +
         'coordonnees : ' + feature.properties.gridcoord + '<br>' +
-        '<b>' + 'valeur : ' + (feature.properties.value * (max - min) + min).toFixed(2) + '</b>' +
+        '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
         '</div>' );
 }
 function gridLegend() {
@@ -49,6 +49,7 @@ fetch("json/geojson_petit.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
         Object.assign(valJson, data);
+        console.log(valJson);
         max = valJson.properties.valmax;
         min = valJson.properties.valmin;
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(layers);
