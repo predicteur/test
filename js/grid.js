@@ -54,6 +54,7 @@ fetch("json/geojson_petit.json")
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(layers);
     })
 // légende
+console.log(valJson);
 let legend = L.control({ position: "topright" });
 legend.onAdd = gridLegend;
 legend.addTo(map);
