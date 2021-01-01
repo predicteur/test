@@ -36,26 +36,32 @@ let ncolor = 9;
 let colors = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000'];
 
 // carte
-let map = L.map("map").setView([43.5, 5], 9);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    { attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>' }
-).addTo(map);
+let mesures = L.layerGroup();
+let simulation = L.layerGroup();
+let mbAttr = '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    mbURL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+let base = L.tileLayer(mbURL, { attribution: mbAttr } );
+let map = L.map("map", { layers: [base, mesures] }).setView([43.5, 5], 9);
+let legend = L.control({ position: "topright" });
+let baseMaps = {"Base": base };
+let overlayMaps = { "Mesures": mesures, "Simulation": simulation };
+L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 // marqueurs et grille
 let max = 1.0;
 let min = 0.0;
-let layers = L.layerGroup().addTo(map);
-let legend = L.control({ position: "topright" });
+//let layers = L.layerGroup().addTo(map);
 let valJson = {};
 
-L.marker([43.5, 5]).addTo(layers);
+L.marker([43.5, 5]).bindPopup('coucou').addTo(mesures);
+
 fetch("json/geojson_moyen.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
         valJson = data;
         max = valJson.properties.valmax;
         min = valJson.properties.valmin;
-        L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(layers);
+        L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(simulation);
         legend.onAdd = gridLegend;
         legend.addTo(map);
     });
