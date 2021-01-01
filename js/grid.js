@@ -13,10 +13,16 @@ function gridStyle(feature) {
              color: "black",
              fillOpacity: 0.5 };
 }
+function mesPopup(feature, layer) {
+    layer.bindPopup(
+        '<div class="popup">' +
+        'coordonnees : ' + feature.coordinates[0] + ', ' + feature.coordinates[1] + '<br>' +
+        '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
+        '</div>');
+}
 function gridPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        'top : ' + valJson.properties.top + '<br>' +
         'coordonnees : ' + feature.properties.gridcoord + '<br>' +
         '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
         '</div>' );
@@ -70,4 +76,4 @@ fetch("json/geojson_moyen.json")
     });
 fetch("json/mesjson.json")
     .then(function (response) { return response.json(); })
-    .then(function (data) { L.geoJSON(data, { pointToLayer: mesStyle }).addTo(mesures); });
+    .then(function (data) { L.geoJSON(data, { pointToLayer: mesStyle, onEachFeature: mesPopup }).addTo(mesures); });
