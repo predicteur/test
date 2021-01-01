@@ -46,7 +46,7 @@ let legend = L.control({ position: "topright" });
 let baseMaps = {"Base": base };
 let overlayMaps = { "Mesures": mesures, "Simulation": simulation };
 L.control.layers(baseMaps, overlayMaps, { position: "bottomleft" }).addTo(map);
-L.control.scale({ position: "bottomright" })
+L.control.scale({ position: "bottomright" }).addTo(map);
 
 // marqueurs et grille
 let max = 1.0;
