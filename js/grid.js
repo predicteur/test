@@ -70,5 +70,4 @@ fetch("json/geojson_moyen.json")
     });
 fetch("json/mesjson.json")
     .then(function (response) { return response.json(); })
-    .then(function (data) { L.geoJSON(data, { pointToLayer=mesStyle }).addTo(mesures); });
-
+    .then(function (data) { L.geoJSON(data, { pointToLayer: mesStyle }).addTo(mesures); });
