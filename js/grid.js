@@ -45,12 +45,12 @@ let map = L.map("map", { layers: [base, mesures] }).setView([43.5, 5], 9);
 let legend = L.control({ position: "topright" });
 let baseMaps = {"Base": base };
 let overlayMaps = { "Mesures": mesures, "Simulation": simulation };
-L.control.layers(baseMaps, overlayMaps).addTo(map);
+L.control.layers(baseMaps, overlayMaps, { position: "bottomleft" }).addTo(map);
+L.control.scale({ position: "bottomright" })
 
 // marqueurs et grille
 let max = 1.0;
 let min = 0.0;
-//let layers = L.layerGroup().addTo(map);
 let valJson = {};
 
 L.marker([43.5, 5]).bindPopup('coucou').addTo(mesures);
