@@ -1,5 +1,8 @@
 // JavaScript source code
 
+function mesStyle(geoJsonPoint, latlng) {
+    return L.marker(latlng).bindPopup('coucou');
+}
 function gridColor(val) {
     return colors[Math.max(Math.min(Math.floor((val - min) / (max - min) * ncolor), ncolor - 1), 0)];
 }
@@ -53,7 +56,7 @@ let max = 1.0;
 let min = 0.0;
 let valJson = {};
 
-L.marker([43.5, 5]).bindPopup('coucou').addTo(mesures);
+//L.marker([43.5, 5]).bindPopup('coucou').addTo(mesures);
 
 fetch("json/geojson_moyen.json")
     .then(function (response) { return response.json(); })
@@ -65,4 +68,7 @@ fetch("json/geojson_moyen.json")
         legend.onAdd = gridLegend;
         legend.addTo(map);
     });
+fetch("json/mesjson.json")
+    .then(function (response) { return response.json(); })
+    .then(function (data) { L.geoJSON(data, { pointToLayer=mesStyle }).addTo(mesures); });
 
