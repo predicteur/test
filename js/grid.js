@@ -64,7 +64,7 @@ let valJson = {};
 
 //L.marker([43.5, 5]).bindPopup('coucou').addTo(mesures);
 
-fetch("json/geojson_moyen.json")
+fetch("json/geojson_gros.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
         valJson = data;
