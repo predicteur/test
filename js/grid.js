@@ -16,8 +16,10 @@ function gridStyle(feature) {
 function mesPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        'coordonnees : ' + feature.geometry.coordinates[0].toFixed(2) + ', ' + feature.geometry.coordinates[1].toFixed(2) + '<br>' +
-        '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
+        '<b>' + 'station : ' + '</b>' + feature.properties.nom + '<br>' +
+        '<b>' + 'polluant : ' + '</b>' + feature.properties.pol + '<br>' +
+        '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' + '<br>' +
+        'coordonnees : ' + feature.geometry.coordinates[0].toFixed(2) + ', ' + feature.geometry.coordinates[1].toFixed(2) +
         '</div>');
 }
 function gridPopup(feature, layer) {
