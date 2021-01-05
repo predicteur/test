@@ -25,8 +25,8 @@ function mesPopup(feature, layer) {
 function gridPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        'latitude : '  + ((feature.properties.gridcoord[0] + 0.5) * pasx + left).toFixed(3) + '<br>' +
-        'longitude : ' + ((feature.properties.gridcoord[1] + 0.5) * pasy + top ).toFixed(3) + '<br>' +
+        'latitude : '  + ((feature.properties.gridcoord[0] + 0.5) * pasx + leftgrid).toFixed(3) + '<br>' +
+        'longitude : ' + ((feature.properties.gridcoord[1] + 0.5) * pasy + topgrid ).toFixed(3) + '<br>' +
         '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
         '</div>' );
 }
@@ -62,7 +62,7 @@ L.control.layers(baseMaps, overlayMaps, { position: "bottomleft" }).addTo(map);
 L.control.scale({ position: "bottomright" }).addTo(map);
 
 // marqueurs et grille
-let max = 1.0, min = 0.0, left = 0.0, top = 0.0, pasx = 1, pasy = 1;
+let max = 1.0, min = 0.0, leftgrid = 0.0, topgrid = 0.0, pasx = 1, pasy = 1;
 let valJson = {};
 
 //L.marker([43.5, 5]).bindPopup('coucou').addTo(mesures);
@@ -73,8 +73,8 @@ fetch("json/geojson_gros.json")
         valJson = data;
         max  = valJson.properties.valmax;
         min  = valJson.properties.valmin;
-        left = valJson.properties.left;
-        top  = valJson.properties.top;
+        left = valJson.properties.leftgrid;
+        top  = valJson.properties.topgrid;
         pasx = valJson.properties.pasx;
         pasy = valJson.properties.pasy;
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(simulation);
