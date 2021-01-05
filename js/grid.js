@@ -71,12 +71,12 @@ fetch("json/geojson_gros.json")
     .then(function (response) { return response.json(); })
     .then(function (data) {
         valJson = data;
-        max  = valJson.properties.valmax;
-        min  = valJson.properties.valmin;
-        left = valJson.properties.leftgrid;
-        top  = valJson.properties.topgrid;
-        pasx = valJson.properties.pasx;
-        pasy = valJson.properties.pasy;
+        max      = valJson.properties.valmax;
+        min      = valJson.properties.valmin;
+        leftgrid = valJson.properties.left;
+        topgrid  = valJson.properties.top;
+        pasx     = valJson.properties.pasx;
+        pasy     = valJson.properties.pasy;
         L.geoJSON(data, { style: gridStyle, onEachFeature: gridPopup }).addTo(simulation);
         legend.onAdd = gridLegend;
         legend.addTo(map);
