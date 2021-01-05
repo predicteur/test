@@ -25,8 +25,8 @@ function mesPopup(feature, layer) {
 function gridPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        'latitude : '  + (feature.properties.gridcoord[0] + 0.5) * pasx + left).toFixed(3) + '<br>' +
-        'longitude : ' + (feature.properties.gridcoord[1] + 0.5) * pasy + top ).toFixed(3) + '<br>' +
+        'latitude : '  + ((feature.properties.gridcoord[0] + 0.5) * pasx + left).toFixed(3) + '<br>' +
+        'longitude : ' + ((feature.properties.gridcoord[1] + 0.5) * pasy + top ).toFixed(3) + '<br>' +
         '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
         '</div>' );
 }
