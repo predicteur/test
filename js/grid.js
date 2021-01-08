@@ -25,8 +25,8 @@ function mesPopup(feature, layer) {
 function gridPopup(feature, layer) {
     layer.bindPopup(
         '<div class="popup">' +
-        'latitude : '  + ((feature.properties.gridcoord[0] + 0.5) * pasx + leftgrid).toFixed(3) + '<br>' +
-        'longitude : ' + ((feature.properties.gridcoord[1] + 0.5) * pasy + topgrid ).toFixed(3) + '<br>' +
+        'longitude : '+ ((feature.properties.gridcoord[0] + 0.5) * pasx + leftgrid).toFixed(3) + '<br>' +
+        'latitude : ' + ((feature.properties.gridcoord[1] + 0.5) * pasy + topgrid ).toFixed(3) + '<br>' +
         '<b>' + 'valeur : ' + (feature.properties.value).toFixed(2) + '</b>' +
         '</div>' );
 }
@@ -50,7 +50,8 @@ let colors = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', 
 // carte
 let mesures = L.layerGroup();
 let simulation = L.layerGroup();
-let mbAttr = '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>',
+let mbAttr = '&copy; A lab in the air &copy; ESRI &copy;',
+//let mbAttr = '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>',
     //mbURL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
     mbURL = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
 let base = L.tileLayer(mbURL, { attribution: mbAttr } );
