@@ -50,7 +50,7 @@ let colors = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', 
 // carte
 let mesures = L.layerGroup();
 let simulation = L.layerGroup();
-let mbAttr = '&copy; A lab in the air &copy; ESRI &copy;',
+let mbAttr = '&copy; A lab in the air &copy; ESRI',
 //let mbAttr = '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>',
     //mbURL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
     mbURL = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
